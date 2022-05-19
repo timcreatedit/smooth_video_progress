@@ -1,4 +1,4 @@
-Have you been there before: you created a video player using [video_player](https://pub.dev/packages/video_player),
+Have you been here before: you created a video player using [video_player](https://pub.dev/packages/video_player),
 but the progress bar updates way to infrequently and makes your UX look choppy?
 
 Look no further than this package. It will make your video progress bars look smooooth ✨
@@ -15,7 +15,21 @@ anyway, check out the package if you don't know it, it makes life so much easier
 
 ## Usage
 
+Here is how you would build a simple slider for example:
 ```dart
-const like = 'sample';
+Widget build(BuildContext context) {
+  SmoothVideoProgress(
+    controller: controller,
+    builder: (context, position, child) => Slider(
+      onChangeStart: (_) => controller.pause(),
+      onChangeEnd: (_) => controller.play(),
+      onChanged: (value) =>
+          controller.seekTo(Duration(milliseconds: value.toInt())),
+      value: position.inMilliseconds.toDouble(),
+      min: 0,
+      max: value.duration.inMilliseconds.toDouble(),
+    ),
+  );
+}
 ```
 

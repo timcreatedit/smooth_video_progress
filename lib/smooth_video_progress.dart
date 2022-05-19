@@ -6,8 +6,8 @@ import 'package:video_player/video_player.dart';
 
 /// A widget that provides a method of building widgets using an interpolated
 /// position value for [VideoPlayerController].
-class VideoProgressBuilder extends HookWidget {
-  const VideoProgressBuilder({
+class SmoothVideoProgress extends HookWidget {
+  const SmoothVideoProgress({
     Key? key,
     required this.controller,
     required this.builder,
