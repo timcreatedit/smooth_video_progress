@@ -1,3 +1,7 @@
+# Platform projects
+android/
+ios/
+
 # Miscellaneous
 *.class
 *.log
