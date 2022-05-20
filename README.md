@@ -39,3 +39,10 @@ Widget build(BuildContext context) {
 }
 ```
 
+## Example Project
+To take a look at the example (seen on the GIF above)
+1. Open ``example`` folder
+2. Run ``flutter create .``
+3. ``flutter run`` on the iOS, android or web
+4. You might have to do additional setup steps for ``video_player`` to work, check their documentation for details
+
