@@ -3,6 +3,12 @@ but the progress bar updates way to infrequently and makes your UX look choppy?
 
 Look no further than this package. It will make your video progress bars look smooooth ✨
 
+## Check it out:
+Since this is a GIF, the framerate is reduced, but rest assured that the bottom slider
+animates at the same framerate as your app.
+
+![Demo GIF](demo.gif)
+
 ## Features
 
 - Build a smoothly interpolated progress bar for [video_player](https://pub.dev/packages/video_player)'s ``VideoPlayerController`` instances.
@@ -20,14 +26,14 @@ Here is how you would build a simple slider for example:
 Widget build(BuildContext context) {
   SmoothVideoProgress(
     controller: controller,
-    builder: (context, position, child) => Slider(
+    builder: (context, position, duration, child) => Slider(
       onChangeStart: (_) => controller.pause(),
       onChangeEnd: (_) => controller.play(),
       onChanged: (value) =>
           controller.seekTo(Duration(milliseconds: value.toInt())),
       value: position.inMilliseconds.toDouble(),
       min: 0,
-      max: value.duration.inMilliseconds.toDouble(),
+      max: duration.inMilliseconds.toDouble(),
     ),
   );
 }
