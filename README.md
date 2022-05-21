@@ -3,7 +3,7 @@ but the progress bar updates way to infrequently and makes your UX look choppy?
 
 Look no further than this package. It will make your video progress bars look smooooth ✨
 
-![Demo GIF](./demo.gif)
+![Demo GIF](https://raw.githubusercontent.com/timcreatedit/smooth_video_progress/main/demo.gif)
 
 > Since this is a GIF, the framerate is reduced, but rest assured that the bottom slider
 animates at the same framerate as your app.
