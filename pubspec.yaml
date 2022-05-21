@@ -1,6 +1,6 @@
 name: smooth_video_progress
 description: An interpolated progress builder for video_player controllers
-version: 0.0.2
+version: 0.0.3
 homepage: https://www.timcreated.it
 repository: https://github.com/timcreatedit/smooth_video_progress
 issue_tracker: https://github.com/timcreatedit/smooth_video_progress/issues
