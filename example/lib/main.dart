@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_video_progress/smooth_video_progress.dart';
 import 'package:video_player/video_player.dart';
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Center(
@@ -85,6 +86,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: VideoPlayer(
                     _controller,
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: ValueListenableBuilder<VideoPlayerValue>(
+                valueListenable: _controller,
+                builder: (context, value, child) =>
+                    CupertinoSlidingSegmentedControl<double>(
+                  groupValue: value.playbackSpeed,
+                  onValueChanged: (speed) =>
+                      _controller.setPlaybackSpeed(speed ?? 1.0),
+                  children: {
+                    0.5: const Text("0.5x"),
+                    1.0: const Text("1x"),
+                    2.0: const Text("2x"),
+                  },
                 ),
               ),
             ),

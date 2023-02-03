@@ -34,16 +34,22 @@ class SmoothVideoProgress extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final value = useValueListenable(controller);
-    final animationController = useAnimationController(
-        duration: value.duration, keys: [value.duration]);
+
+    final speedAdjustedDuration = value.duration * (1 / value.playbackSpeed);
 
     final targetRelativePosition =
         value.position.inMilliseconds / value.duration.inMilliseconds;
 
-    final currentPosition = Duration(
-        milliseconds:
-            (animationController.value * value.duration.inMilliseconds)
-                .round());
+    final animationController = useAnimationController(
+      duration: speedAdjustedDuration,
+      initialValue: targetRelativePosition,
+      keys: [speedAdjustedDuration],
+    );
+    final animatedPosition =
+        Tween<Duration>(begin: Duration.zero, end: value.duration)
+            .animate(animationController);
+
+    final currentPosition = animatedPosition.value;
 
     final offset = value.position - currentPosition;
 
@@ -53,10 +59,13 @@ class SmoothVideoProgress extends HookWidget {
         final correct = value.isPlaying &&
             offset.inMilliseconds > -500 &&
             offset.inMilliseconds < -50;
+
         final correction = const Duration(milliseconds: 500) - offset;
         final targetPos =
             correct ? animationController.value : targetRelativePosition;
-        final duration = correct ? value.duration + correction : value.duration;
+        final duration = correct
+            ? speedAdjustedDuration + correction
+            : speedAdjustedDuration;
 
         animationController.duration = duration;
         value.isPlaying
